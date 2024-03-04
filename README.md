@@ -10,3 +10,4 @@
 // commands
 - npm install classnames
 - npm install tailwind-merge
+- npm install --save-exact react-icons@4.6.0
