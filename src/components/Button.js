@@ -1,6 +1,7 @@
 import className from "classnames";
 import { twMerge } from "tailwind-merge";
 
+// Define the Button component
 function Button({
   children,
   primary,
@@ -12,6 +13,7 @@ function Button({
   rounded,
   ...rest
 }) {
+  // Merge Tailwind CSS classes based on component props
   const classes = twMerge(
     className(rest.className, "flex items-center px-3 py-1.5 border", {
       "border-blue-500 bg-blue-500 text-white": primary,
@@ -28,10 +30,14 @@ function Button({
       'text-red-500': outline && danger,
     })
   );
+
+  // Render the button with merged classes and remaining props
   return <button {...rest} className={classes}>{children}</button>;
 }
 
+// Define propTypes for Button component
 Button.propTypes = {
+  // Custom validation for ensuring only one variation is true
   checkVariationValue: ({ primary, secondary, success, warning, danger }) => {
     const count =
       Number(!!primary) +
@@ -40,6 +46,7 @@ Button.propTypes = {
       Number(!!success) +
       Number(!!danger);
 
+    // Check if more than one variation is true, throw error if so
     if (count > 1) {
       return new Error(
         "Only one of primary, secondary, success, warning, danger can be true"
@@ -48,4 +55,5 @@ Button.propTypes = {
   },
 };
 
+// Export the Button component as default
 export default Button;

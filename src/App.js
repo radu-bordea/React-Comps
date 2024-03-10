@@ -1,43 +1,32 @@
-import { GoBell, GoCloudDownload, GoDatabase } from "react-icons/go";
-import Button from "./Button";
+import Accordion from "./components/Accordion";
 
+// Define the main App component
 function App() {
-  const handleClick = () => {
-    console.log('Click!');
-  }
+  // Data for the accordion items
+  const items = [
+    {
+      id: "ejk43jbbg",
+      label: "Can I use React on a project?",
+      content:
+        "You can use React on any project you want! You can use React on any project you want! You can use React on any project you want! You can use React on any project you want! You can use React on any project you want!",
+    },
+    {
+      id: "htrjnrt43",
+      label: "Can I use Javascript on a project?",
+      content:
+        "You can use Javascript on any project you want! You can use Javascript on any project you want! You can use Javascript on any project you want! You can use Javascript on any project you want! You can use Javascript on any project you want!",
+    },
+    {
+      id: "ert43re43",
+      label: "Can I use CSS on a project?",
+      content:
+        "You can use CSS on any project you want! You can use CSS on any project you want! You can use CSS on any project you want! You can use CSS on any project you want! You can use CSS on any project you want!",
+    },
+  ];
 
-  return (
-    <div>
-      <div>
-        <Button secondary outline rounded className="mb-5" onClick={handleClick}>
-          <GoBell />
-          Click me!!
-        </Button>
-      </div>
-      <div>
-        <Button danger outline>
-          <GoCloudDownload />
-          Buy Now!
-        </Button>
-      </div>
-      <div>
-        <Button warning>
-          <GoDatabase />
-          See Deal!
-        </Button>
-      </div>
-      <div>
-        <Button secondary outline>
-          Hide Ads!
-        </Button>
-      </div>
-      <div>
-        <Button primary rounded>
-          Something!
-        </Button>
-      </div>
-    </div>
-  );
+  // Render the Accordion component with the provided items
+  return <Accordion items={items} />;
 }
 
+// Export the App component as default
 export default App;
