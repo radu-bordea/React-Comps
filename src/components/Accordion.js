@@ -10,13 +10,18 @@ function Accordion({ items }) {
 
   // Function to handle click events on accordion items
   const handleClick = (nextIndex) => {
-    if (expandedIndex === nextIndex) {
-      // Collapse the item if it's already expanded
-      setExpandedIndex(-1);
-    } else {
-      // Expand the clicked item
-      setExpandedIndex(nextIndex);
-    }
+    // Update the expanded index state based on the next index
+    setExpandedIndex((currentExpandedIndex) => {
+
+      // Check if the clicked item is already expanded
+      if (currentExpandedIndex === nextIndex) {
+        // Collapse the item by setting the index to -1
+        return -1;
+      } else {
+        // Expand the clicked item by setting the index to nextIndex
+        return nextIndex;
+      }
+    });
   };
 
   // Render accordion items based on the provided data
