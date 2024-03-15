@@ -1,48 +1,38 @@
-// Import necessary dependencies and components
-import { useEffect, useState, useRef } from "react";
-import { GoChevronDown, GoChevronLeft } from "react-icons/go";
-import Panel from "./Panel";
+import { useState, useEffect, useRef } from 'react'; // Importing necessary hooks from React
+import { GoChevronDown } from 'react-icons/go'; // Importing ChevronDown icon from react-icons library
+import Panel from './Panel'; // Importing Panel component
 
-// Define Dropdown component
 function Dropdown({ options, value, onChange }) {
-  // State to manage whether the dropdown is open or closed
-  const [isOpen, setIsOpen] = useState(false);
-  // Ref to track the dropdown element
-  const divEl = useRef();
+  const [isOpen, setIsOpen] = useState(false); // State for tracking dropdown open/close
+  const divEl = useRef(); // Reference to the dropdown container element
 
-  // Effect to handle clicks outside the dropdown to close it
   useEffect(() => {
     const handler = (event) => {
-      if (!divEl.current) {
+      if (!divEl.current) { // If the dropdown container doesn't exist
         return;
       }
 
-      if (!divEl.current.contains(event.target)) {
-        setIsOpen(false);
+      if (!divEl.current.contains(event.target)) { // If clicked outside the dropdown container
+        setIsOpen(false); // Close the dropdown
       }
     };
 
-    document.addEventListener("click", handler, true);
+    document.addEventListener('click', handler, true); // Adding event listener to handle outside clicks
 
     return () => {
-      document.removeEventListener("click", handler);
+      document.removeEventListener('click', handler); // Cleanup: removing event listener
     };
-  }, []);
+  }, []); // Runs only once on component mount
 
-  // Function to toggle dropdown open/close state
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen); // Toggle dropdown open/close
   };
 
-  // Function to handle option selection
   const handleOptionClick = (option) => {
-    // Close the dropdown
-    setIsOpen(false);
-    // Call the onChange callback with the selected option
-    onChange(option);
+    setIsOpen(false); // Close dropdown on option selection
+    onChange(option); // Call the onChange function with the selected option
   };
 
-  // Render the options
   const renderedOptions = options.map((option) => {
     return (
       <div
@@ -55,23 +45,18 @@ function Dropdown({ options, value, onChange }) {
     );
   });
 
-  // Return the Dropdown component
   return (
-    <div ref={divEl} className="w-48 relative">
+    <div ref={divEl} className="w-48 relative"> {/* Dropdown container */}
       <Panel
-        className="flex justify-between items-center cursor-pointer"
-        onClick={handleClick}
+        className="flex justify-between items-center cursor-pointer" // Panel for dropdown header
+        onClick={handleClick} // Toggle dropdown open/close on header click
       >
-        {/* Display selected value or default text */}
-        {value?.label || "Select..."}
-        {/* Display appropriate icon based on dropdown state */}
-        {isOpen ? <GoChevronLeft className="text-lg" /> : <GoChevronDown className="text-lg" />}
+        {value?.label || 'Select...'} {/* Display selected value or default */}
+        <GoChevronDown className="text-lg" /> {/* ChevronDown icon */}
       </Panel>
-      {/* Render options if dropdown is open */}
-      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
+      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>} {/* Render options if dropdown is open */}
     </div>
   );
 }
 
-// Export the Dropdown component
-export default Dropdown;
+export default Dropdown; // Exporting Dropdown component as default

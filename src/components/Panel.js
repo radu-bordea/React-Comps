@@ -1,21 +1,18 @@
-// Import necessary dependency
-import classNames from "classnames";
+import classNames from 'classnames'; // Importing classNames library for conditional class assignment
 
-// Define Panel component
 function Panel({ children, className, ...rest }) {
-  // Concatenate classNames with provided className prop
+  // Combining default and custom classNames
   const finalClassNames = classNames(
-    "border rounded p-3 shadow bg-white w-full",
-    className
+    'border rounded p-3 shadow bg-white w-full', // Default classNames for panel
+    className // Custom classNames passed as props
   );
 
-  // Return the Panel component
+  // Returning a div element with combined classNames and children
   return (
     <div {...rest} className={finalClassNames}>
-      {children}
+      {children} {/* Children elements */}
     </div>
   );
 }
 
-// Export the Panel component
-export default Panel;
+export default Panel; // Exporting Panel component as default

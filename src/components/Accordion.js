@@ -1,61 +1,43 @@
-// Import useState hook from React
-import { useState } from "react";
-// Import icons from react-icons library
-import { GoChevronDown, GoChevronLeft } from "react-icons/go";
+import { useState } from 'react'; // Importing useState hook from React
+import { GoChevronDown, GoChevronLeft } from 'react-icons/go'; // Importing Chevron icons from react-icons library
 
-// Define the Accordion component
 function Accordion({ items }) {
-  // State to track the index of the expanded item
-  const [expandedIndex, setExpandedIndex] = useState(-1);
+  const [expandedIndex, setExpandedIndex] = useState(-1); // State for tracking expanded index
 
-  // Function to handle click events on accordion items
-  const handleClick = (nextIndex) => {
-    // Update the expanded index state based on the next index
-    setExpandedIndex((currentExpandedIndex) => {
-
-      // Check if the clicked item is already expanded
-      if (currentExpandedIndex === nextIndex) {
-        // Collapse the item by setting the index to -1
+  const handleClick = (nextIndex) => { // Function to handle click events
+    setExpandedIndex((currentExpandedIndex) => { // Updating expanded index state
+      if (currentExpandedIndex === nextIndex) { // If clicked on already expanded item, collapse it
         return -1;
-      } else {
-        // Expand the clicked item by setting the index to nextIndex
+      } else { // If clicked on a different item, expand it
         return nextIndex;
       }
     });
   };
 
-  // Render accordion items based on the provided data
-  const renderItems = items.map((item, index) => {
-    // Check if the current item is expanded
-    const isExpanded = index === expandedIndex;
+  const renderedItems = items.map((item, index) => { // Mapping through items to render each accordion item
+    const isExpanded = index === expandedIndex; // Checking if the item is expanded
 
-    // Determine the icon based on the expansion state
-    const icon = (
+    const icon = ( // Chevron icon based on expansion state
       <span className="text-2xl">
         {isExpanded ? <GoChevronDown /> : <GoChevronLeft />}
       </span>
     );
 
-    // Return the JSX for the accordion item
     return (
-      <div key={item.id}>
+      <div key={item.id}> {/* Unique key for each accordion item */}
         <div
-          // Clickable header section of the accordion item
           className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer"
-          onClick={() => handleClick(index)}
+          onClick={() => handleClick(index)} // Click handler for expanding/collapsing
         >
-          {item.label} {/* Display item label */}
-          {icon} {/* Display icon indicating expansion state */}
+          {item.label} {/* Accordion item label */}
+          {icon} {/* Chevron icon */}
         </div>
-        {/* Expanded content of the accordion item */}
-        {isExpanded && <div className="border-b p-5">{item.content}</div>}
+        {isExpanded && <div className="border-b p-5">{item.content}</div>} {/* Render content if expanded */}
       </div>
     );
   });
 
-  // Render the entire accordion component
-  return <div className="border-x border-t rounded">{renderItems}</div>;
+  return <div className="border-x border-t rounded">{renderedItems}</div>; {/* Rendered accordion items container */}
 }
 
-// Export the Accordion component as default
-export default Accordion;
+export default Accordion; // Exporting Accordion component as default
