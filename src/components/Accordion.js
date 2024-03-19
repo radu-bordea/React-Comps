@@ -1,43 +1,53 @@
-import { useState } from 'react'; // Importing useState hook from React
-import { GoChevronDown, GoChevronLeft } from 'react-icons/go'; // Importing Chevron icons from react-icons library
+// Importing necessary modules
+import { useState } from 'react';
+import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
+// Accordion component
 function Accordion({ items }) {
-  const [expandedIndex, setExpandedIndex] = useState(-1); // State for tracking expanded index
+  // State to manage expanded index
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
-  const handleClick = (nextIndex) => { // Function to handle click events
-    setExpandedIndex((currentExpandedIndex) => { // Updating expanded index state
-      if (currentExpandedIndex === nextIndex) { // If clicked on already expanded item, collapse it
+  // Function to handle click on accordion item
+  const handleClick = (nextIndex) => {
+    setExpandedIndex((currentExpandedIndex) => {
+      if (currentExpandedIndex === nextIndex) {
         return -1;
-      } else { // If clicked on a different item, expand it
+      } else {
         return nextIndex;
       }
     });
   };
 
-  const renderedItems = items.map((item, index) => { // Mapping through items to render each accordion item
-    const isExpanded = index === expandedIndex; // Checking if the item is expanded
+  // Rendering accordion items
+  const renderedItems = items.map((item, index) => {
+    const isExpanded = index === expandedIndex;
 
-    const icon = ( // Chevron icon based on expansion state
+    // Icon based on accordion state
+    const icon = (
       <span className="text-2xl">
         {isExpanded ? <GoChevronDown /> : <GoChevronLeft />}
       </span>
     );
 
     return (
-      <div key={item.id}> {/* Unique key for each accordion item */}
+      <div key={item.id}>
+        {/* Accordion item */}
         <div
           className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer"
-          onClick={() => handleClick(index)} // Click handler for expanding/collapsing
+          onClick={() => handleClick(index)}
         >
-          {item.label} {/* Accordion item label */}
-          {icon} {/* Chevron icon */}
+          {item.label}
+          {icon}
         </div>
-        {isExpanded && <div className="border-b p-5">{item.content}</div>} {/* Render content if expanded */}
+        {/* Render content if expanded */}
+        {isExpanded && <div className="border-b p-5">{item.content}</div>}
       </div>
     );
   });
 
-  return <div className="border-x border-t rounded">{renderedItems}</div>; {/* Rendered accordion items container */}
+  // Return the accordion component
+  return <div className="border-x border-t rounded">{renderedItems}</div>;
 }
 
-export default Accordion; // Exporting Accordion component as default
+// Exporting the Accordion component as default
+export default Accordion;

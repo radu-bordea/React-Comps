@@ -1,27 +1,31 @@
-import { useState } from 'react'; // Importing useState hook from React
-import Dropdown from '../components/Dropdown'; // Importing Dropdown component
+// Importing necessary hooks and components
+import { useState } from 'react';
+import Dropdown from '../components/Dropdown';
 
+// Component representing the Dropdown page
 function DropdownPage() {
-  const [selection, setSelection] = useState(null); // State for tracking dropdown selection
+  // State to manage the selected option
+  const [selection, setSelection] = useState(null);
 
-  // Function to handle dropdown selection
+  // Function to handle selection change
   const handleSelect = (option) => {
-    setSelection(option); // Updating selection state with the selected option
+    setSelection(option);
   };
 
-  // Dropdown options
+  // Options for the dropdown
   const options = [
-    { label: 'Red', value: 'red' }, // Option 1
-    { label: 'Green', value: 'green' }, // Option 2
-    { label: 'Blue', value: 'blue' }, // Option 3
+    { label: 'Red', value: 'red' },
+    { label: 'Green', value: 'green' },
+    { label: 'Blue', value: 'blue' },
   ];
 
-  // Rendering Dropdown component with options and selection handler
+  // Rendering the Dropdown component with provided options and handling selection change
   return (
     <div className="flex">
-      <Dropdown options={options} value={selection} onChange={handleSelect} /> {/* Rendering Dropdown component */}
+      <Dropdown options={options} value={selection} onChange={handleSelect} />
     </div>
   );
 }
 
-export default DropdownPage; // Exporting DropdownPage component as default
+// Exporting the DropdownPage component as default
+export default DropdownPage;

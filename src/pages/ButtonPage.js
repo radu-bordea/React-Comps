@@ -1,50 +1,52 @@
-import React from 'react'; // Importing React library
-import { GoBell, GoCloudDownload, GoDatabase } from 'react-icons/go'; // Importing icons from react-icons library
-import Button from '../components/Button'; // Importing Button component
+// Importing necessary components and icons
+import { GoBell, GoCloudDownload, GoDatabase } from 'react-icons/go';
+import Button from '../components/Button';
 
+// Component representing the Button page
 function ButtonPage() {
-  const handleClick = () => {}; // Placeholder function for click event handling
+  // Dummy click handler
+  const handleClick = () => {};
 
+  // Rendering various Button components with different props
   return (
     <div>
-      {/* First Button */}
       <div>
         <Button
-          primary // Primary button variant
-          outline // Outline style
-          rounded // Rounded corners
-          className="mb-5" // Additional class for styling
-          onClick={handleClick} // Click event handler
+          secondary
+          outline
+          rounded
+          className="mb-5"
+          onClick={handleClick}
         >
-          Click me!! {/* Button text */}
+          <GoBell />
+          Click me!!
         </Button>
       </div>
-      {/* Second Button */}
       <div>
-        <Button danger outline onMouseEnter={handleClick}> {/* Danger button variant with outline style */}
-          Buy Now! {/* Button text */}
+        <Button danger outline onMouseEnter={handleClick}>
+          <GoCloudDownload />
+          Buy Now!
         </Button>
       </div>
-      {/* Third Button */}
       <div>
-        <Button warning onMouseLeave={handleClick}> {/* Warning button variant */}
-          See Deal! {/* Button text */}
+        <Button warning onMouseLeave={handleClick}>
+          <GoDatabase />
+          See Deal!
         </Button>
       </div>
-      {/* Fourth Button */}
       <div>
-        <Button secondary outline> {/* Secondary button variant with outline style */}
-          Hide Ads! {/* Button text */}
+        <Button secondary outline>
+          Hide Ads!
         </Button>
       </div>
-      {/* Fifth Button */}
       <div>
-        <Button primary rounded> {/* Primary button variant with rounded corners */}
-          Something! {/* Button text */}
+        <Button primary rounded>
+          Something!
         </Button>
       </div>
     </div>
   );
 }
 
-export default ButtonPage; // Exporting ButtonPage component as default
+// Exporting the ButtonPage component as default
+export default ButtonPage;

@@ -1,14 +1,19 @@
-import useNavigation from '../hooks/use-navigation'; // Importing custom hook for navigation
+// Importing necessary module
+import useNavigation from '../hooks/use-navigation';
 
+// Route component
 function Route({ path, children }) {
-  const { currentPath } = useNavigation(); // Using custom hook to get current path
+  // Using navigation hook to get current path
+  const { currentPath } = useNavigation();
 
-  // Rendering children if the path matches the current path
+  // Rendering children if path matches current path
   if (path === currentPath) {
-    return children; // Render children components
+    return children;
   }
 
-  return null; // Return null if the path does not match the current path
+  // Return null if path doesn't match
+  return null;
 }
 
-export default Route; // Exporting Route component as default
+// Exporting the Route component as default
+export default Route;

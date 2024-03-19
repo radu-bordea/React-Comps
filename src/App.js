@@ -1,34 +1,32 @@
-import Sidebar from "./components/Sidebar"; // Importing the Sidebar component
-import Route from "./components/Route"; // Importing the Route component
-import AccordionPage from "./pages/AccordionPage"; // Importing the AccordionPage component
-import DropdownPage from "./pages/DropdownPage"; // Importing the DropdownPage component
-import ButtonPage from "./pages/ButtonPage"; // Importing the ButtonPage component
-import ModalPage from "./pages/ModalPage";
-import TablePage from "./pages/TablePage";
+// Importing necessary components and pages
+import Sidebar from './components/Sidebar';
+import Route from './components/Route';
+import AccordionPage from './pages/AccordionPage';
+import DropdownPage from './pages/DropdownPage';
+import ButtonPage from './pages/ButtonPage';
+import ModalPage from './pages/ModalPage';
+import TablePage from './pages/TablePage';
 
+// Main App component
 function App() {
   return (
+    // Container with grid layout
     <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
-      {" "}
-      {/* Main container */}
-      <Sidebar /> {/* Sidebar component */}
+      {/* Sidebar component */}
+      <Sidebar />
+      {/* Main content area */}
       <div className="col-span-5">
-        {" "}
-        {/* Main content area, spanning 5 columns */}
+        {/* Routing setup */}
+        {/* Each Route component corresponds to a specific path */}
+        {/* Renders the respective page component based on the path */}
         <Route path="/accordion">
-          {" "}
-          {/* Route for the AccordionPage */}
-          <AccordionPage /> {/* AccordionPage component */}
+          <AccordionPage />
         </Route>
         <Route path="/">
-          {" "}
-          {/* Default route for the DropdownPage */}
-          <DropdownPage /> {/* DropdownPage component */}
+          <DropdownPage />
         </Route>
         <Route path="/buttons">
-          {" "}
-          {/* Route for the ButtonPage */}
-          <ButtonPage /> {/* ButtonPage component */}
+          <ButtonPage />
         </Route>
         <Route path="/modal">
           <ModalPage />
@@ -41,4 +39,5 @@ function App() {
   );
 }
 
-export default App; // Exporting the App component as default
+// Exporting the App component as default
+export default App;

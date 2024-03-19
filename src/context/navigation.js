@@ -1,40 +1,40 @@
-import { createContext, useState, useEffect } from 'react'; // Importing necessary hooks from React
+// Importing necessary modules
+import { createContext, useState, useEffect } from 'react';
 
-// Creating a context for navigation
+// Creating navigation context
 const NavigationContext = createContext();
 
+// Provider component for navigation context
 function NavigationProvider({ children }) {
-  // State to hold the current path
+  // State to track current path
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
+  // Effect to update current path on popstate
   useEffect(() => {
-    // Function to handle popstate event
     const handler = () => {
-      setCurrentPath(window.location.pathname); // Updating current path on popstate event
+      setCurrentPath(window.location.pathname);
     };
-    window.addEventListener('popstate', handler); // Adding event listener for popstate
+    window.addEventListener('popstate', handler);
 
-    // Cleanup: removing event listener
     return () => {
       window.removeEventListener('popstate', handler);
     };
-  }, []); // Runs only once on component mount
+  }, []);
 
   // Function to navigate to a new path
   const navigate = (to) => {
-    window.history.pushState({}, '', to); // Pushing new state to history
-    setCurrentPath(to); // Updating current path
+    window.history.pushState({}, '', to);
+    setCurrentPath(to);
   };
 
-  // Providing currentPath and navigate function to the context
+  // Providing the navigation context value to children
   return (
     <NavigationContext.Provider value={{ currentPath, navigate }}>
-      {children} {/* Rendering children components */}
+      {children}
     </NavigationContext.Provider>
   );
 }
 
-// Exporting NavigationProvider component as named export
+// Exporting the NavigationProvider and NavigationContext
 export { NavigationProvider };
-// Exporting NavigationContext as default export
 export default NavigationContext;

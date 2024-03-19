@@ -1,25 +1,38 @@
-import classNames from 'classnames'; // Importing classNames library for conditional class assignment
-import useNavigation from '../hooks/use-navigation'; // Importing custom hook for navigation
+// Importing necessary modules
+import classNames from 'classnames';
+import useNavigation from '../hooks/use-navigation';
 
-function Link({ to, children }) {
-  const { navigate } = useNavigation(); // Using custom hook to get navigation function
+// Link component
+function Link({ to, children, className, activeClassName }) {
+  // Using navigation hook to get navigation functions and current path
+  const { navigate, currentPath } = useNavigation();
 
-  const classes = classNames('text-blue-500'); // Setting class for link
+  // Generating dynamic classes based on current path and provided class names
+  const classes = classNames(
+    'text-blue-500',
+    className,
+    currentPath === to && activeClassName
+  );
 
-  const handleClick = (event) => { // Handling click event on link
-    if (event.metaKey || event.ctrlKey) { // Checking if metaKey (command key on Mac) or ctrlKey is pressed
-      return; // Do nothing if metaKey or ctrlKey is pressed (to allow opening link in new tab)
+  // Function to handle link click
+  const handleClick = (event) => {
+    // Preventing default behavior for navigation within the app
+    if (event.metaKey || event.ctrlKey) {
+      return;
     }
-    event.preventDefault(); // Preventing default behavior (page reload)
+    event.preventDefault();
 
-    navigate(to); // Navigating to the specified route
+    // Navigating to the provided path
+    navigate(to);
   };
 
+  // Return the link component
   return (
-    <a className={classes} href={to} onClick={handleClick}> {/* Link element */}
-      {children} {/* Link text */}
+    <a className={classes} href={to} onClick={handleClick}>
+      {children}
     </a>
   );
 }
 
-export default Link; // Exporting Link component as default
+// Exporting the Link component as default
+export default Link;
